@@ -210,7 +210,7 @@ export const CONFIG = {
         }
     ],
 
-    PATH_ASSETS: '/assets/', 
+    PATH_ASSETS: 'https://c9a87e5f4312a5e06034bc472eb60f0f.r2.cloudflarestorage.com/fake-temple-run-assets/public/assets/', 
 
     STREET_LAMP: {
         file: 'simple_street_lamp.glb',
