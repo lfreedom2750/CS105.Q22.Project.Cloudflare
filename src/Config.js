@@ -126,7 +126,7 @@ export const CONFIG = {
             radialSegments: 8,
             positionY: 1,
             seasons: ['summer'],
-            texture: '/assets/textures/cone_spike.png'
+            texture: CONFIG.PATH_ASSETS + 'textures/cone_spike.png'
         },
         {
             id: 'torus_obstacle',
@@ -140,7 +140,7 @@ export const CONFIG = {
             positionY: 1.5,
             rotation: { x: 0, y: 0, z: 0 },  // Không xoay - hướng về phía player
             seasons: ['summer'],
-            texture: '/assets/textures/torus_rainbow.jpg'
+            texture: CONFIG.PATH_ASSETS + 'textures/torus_rainbow.jpg'
         },
         {
             id: 'beach_ball',
@@ -153,7 +153,7 @@ export const CONFIG = {
             positionY: 1,
             color: 0xffffff,
             seasons: ['summer'],
-            texture: '/assets/textures/beach_ball.png'
+            texture: CONFIG.PATH_ASSETS + 'textures/beach_ball.png'
         },
         {
             id: 'pumpkin',

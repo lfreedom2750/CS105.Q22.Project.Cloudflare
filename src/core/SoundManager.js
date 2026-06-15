@@ -1,3 +1,5 @@
+import { CONFIG } from '../Config.js';
+
 export class SoundManager {
     constructor() {
         this.audioContext = null;
@@ -18,15 +20,16 @@ export class SoundManager {
         this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
         this.initialized = true;
 
-        await this.loadSound('coin', '/assets/sounds/coin.wav');
-        await this.loadSound('obstacle', '/assets/sounds/hit.mp3');
-        await this.loadSound('river', '/assets/sounds/river.mp3');
-        await this.loadSound('footstep', '/assets/sounds/footstep.mp3');
-        await this.loadSound('ambientSpring', '/assets/sounds/ambient_spring.mp3');
-        await this.loadSound('ambientSummer', '/assets/sounds/ambient_summer.wav');
-        await this.loadSound('ambientAutumn', '/assets/sounds/ambient_autumn.wav');
-        await this.loadSound('ambientWinter', '/assets/sounds/ambient_winter.wav');
-        await this.loadSound('menuMusic', '/assets/sounds/background_game.wav');
+        const path = CONFIG.PATH_ASSETS || '';
+        await this.loadSound('coin', path + 'sounds/coin.wav');
+        await this.loadSound('obstacle', path + 'sounds/hit.mp3');
+        await this.loadSound('river', path + 'sounds/river.mp3');
+        await this.loadSound('footstep', path + 'sounds/footstep.mp3');
+        await this.loadSound('ambientSpring', path + 'sounds/ambient_spring.mp3');
+        await this.loadSound('ambientSummer', path + 'sounds/ambient_summer.wav');
+        await this.loadSound('ambientAutumn', path + 'sounds/ambient_autumn.wav');
+        await this.loadSound('ambientWinter', path + 'sounds/ambient_winter.wav');
+        await this.loadSound('menuMusic', path + 'sounds/background_game.wav');
 
         // Phát nhạc nền menu ngay khi init
         this.startMenuMusic();

@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
+const PATH_ASSETS = 'https://r2-proxy.23520899.workers.dev/public/assets/';
+
 export class CherryBlossomEffect {
     constructor(scene) {
         this.scene = scene;
@@ -16,7 +18,7 @@ export class CherryBlossomEffect {
         return new Promise((resolve, reject) => {
             const loader = new GLTFLoader();
             loader.load(
-                '/assets/cherry_blossom_petal.glb',
+                PATH_ASSETS + 'cherry_blossom_petal.glb',
                 (gltf) => {
                     this.petalModel = gltf.scene;
 

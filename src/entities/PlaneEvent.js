@@ -57,7 +57,7 @@ export class PlaneEvent {
     loadBombTexture() {
         const textureLoader = new THREE.TextureLoader();
         textureLoader.load(
-            '/assets/war.jpg',
+            CONFIG.PATH_ASSETS + 'war.jpg',
             (texture) => {
                 texture.colorSpace = THREE.SRGBColorSpace;
                 this.bombTexture = texture;
