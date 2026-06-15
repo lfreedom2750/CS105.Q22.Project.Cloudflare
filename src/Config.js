@@ -1,5 +1,8 @@
 import * as THREE from 'three';
 
+// Định nghĩa PATH_ASSETS TRƯỚC để có thể dùng trong CONFIG
+const PATH_ASSETS = 'https://r2-proxy.23520899.workers.dev/public/assets/';
+
 export const CONFIG = {
     LANE_WIDTH: 3,
     LANES: [-3, 0, 3],
@@ -126,7 +129,7 @@ export const CONFIG = {
             radialSegments: 8,
             positionY: 1,
             seasons: ['summer'],
-            texture: CONFIG.PATH_ASSETS + 'textures/cone_spike.png'
+            texture: PATH_ASSETS + 'textures/cone_spike.png'
         },
         {
             id: 'torus_obstacle',
@@ -140,7 +143,7 @@ export const CONFIG = {
             positionY: 1.5,
             rotation: { x: 0, y: 0, z: 0 },  // Không xoay - hướng về phía player
             seasons: ['summer'],
-            texture: CONFIG.PATH_ASSETS + 'textures/torus_rainbow.jpg'
+            texture: PATH_ASSETS + 'textures/torus_rainbow.jpg'
         },
         {
             id: 'beach_ball',
@@ -153,7 +156,7 @@ export const CONFIG = {
             positionY: 1,
             color: 0xffffff,
             seasons: ['summer'],
-            texture: CONFIG.PATH_ASSETS + 'textures/beach_ball.png'
+            texture: PATH_ASSETS + 'textures/beach_ball.png'
         },
         {
             id: 'pumpkin',
@@ -210,7 +213,7 @@ export const CONFIG = {
         }
     ],
 
-    PATH_ASSETS: 'https://r2-proxy.23520899.workers.dev/public/assets/', 
+    PATH_ASSETS, 
 
     STREET_LAMP: {
         file: 'simple_street_lamp.glb',

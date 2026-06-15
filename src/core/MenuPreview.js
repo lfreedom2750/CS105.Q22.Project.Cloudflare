@@ -98,6 +98,13 @@ const loadCharacterIntoGroup = (config, targetGroup, onLoaded) => {
         loader.load(
             filePath,
             (gltf) => {
+                if (!gltf || !gltf.scene) {
+                    console.warn(`[MenuPreview] GLTF invalid cho ${config.file}`);
+                    if (onLoaded) onLoaded(null);
+                    resolve();
+                    return;
+                }
+
                 while (targetGroup.children.length) {
                     targetGroup.remove(targetGroup.children[0]);
                 }
