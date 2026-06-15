@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phoenix Model Test</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #000; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+        // Scene
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x87ceeb);
+
+        // Camera
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+        camera.position.set(0, 10, 30);
+        camera.lookAt(0, 0, 0);
+
+        // Renderer
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        document.body.appendChild(renderer.domElement);
+
+        // Lights
+        const ambient = new THREE.AmbientLight(0xffffff, 1);
+        scene.add(ambient);
+
+        const directional = new THREE.DirectionalLight(0xffffff, 2);
+        directional.position.set(10, 20, 10);
+        directional.castShadow = true;
+        scene.add(directional);
+
+        // Ground
+        const groundGeo = new THREE.PlaneGeometry(100, 100);
+        const groundMat = new THREE.MeshStandardMaterial({ color: 0x90EE90 });
+        const ground = new THREE.Mesh(groundGeo, groundMat);
+        ground.rotation.x = -Math.PI / 2;
+        ground.position.y = 0;
+        ground.receiveShadow = true;
+        scene.add(ground);
+
+        // Debug: Large sphere at origin
+        const debugSphere = new THREE.Mesh(
+            new THREE.SphereGeometry(3, 16, 16),
+            new THREE.MeshBasicMaterial({ color: 0xff0000, wireframe: true })
+        );
+        debugSphere.position.set(0, 3, 0);
+        scene.add(debugSphere);
+
+        let phoenix = null;
+
+        // Load Phoenix Model
+        const loader = new GLTFLoader();
+        console.log('Loading phoenix from: /public/assets/phoenix_bird.glb');
+        
+        loader.load(
+            '/public/assets/phoenix_bird.glb',
+            (gltf) => {
+                console.log('Phoenix model loaded!', gltf);
+                phoenix = gltf.scene;
+                
+                // Compute bounding box to see actual size
+                const box = new THREE.Box3().setFromObject(phoenix);
+                const size = box.getSize(new THREE.Vector3());
+                const center = box.getCenter(new THREE.Vector3());
+                console.log('Phoenix bounding box size:', size);
+                console.log('Phoenix bounding box center:', center);
+                
+                // Scale to reasonable size
+                const targetSize = 10;
+                const maxDim = Math.max(size.x, size.y, size.z);
+                phoenix.scale.setScalar(targetSize / maxDim);
+                
+                // Center the model
+                phoenix.position.set(0, targetSize / 2, 0);
+                
+                // Enable shadows
+                phoenix.traverse((child) => {
+                    if (child.isMesh) {
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                        console.log('Mesh:', child.name, 'Material:', child.material ? 'YES' : 'NO');
+                    }
+                });
+                
+                scene.add(phoenix);
+                console.log('Phoenix added to scene');
+                
+                // Update HUD
+                hud.innerHTML = `
+                    <b style="color: #0f0">MODEL LOADED!</b><br>
+                    Bounding box: ${size.x.toFixed(2)} x ${size.y.toFixed(2)} x ${size.z.toFixed(2)}<br>
+                    Scale applied: ${(targetSize / maxDim).toFixed(2)}<br>
+                    Position: (${phoenix.position.x}, ${phoenix.position.y}, ${phoenix.position.z})<br>
+                    <br>
+                    Camera: (${camera.position.x}, ${camera.position.y}, ${camera.position.z})<br>
+                    LookAt: (0, 0, 0)<br>
+                    <br>
+                    <span style="color: yellow">If you don't see phoenix, check console</span>
+                `;
+            },
+            (progress) => {
+                hud.innerHTML = 'Loading: ' + (progress.loaded / (progress.total || 1) * 100).toFixed(0) + '%';
+            },
+            (error) => {
+                console.error('Failed to load phoenix:', error);
+                hud.innerHTML = '<span style="color: #f00">LOAD FAILED!</span><br>' + error;
+            }
+        );
+
+        // HUD
+        const hud = document.createElement('div');
+        hud.style.cssText = `
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-family: monospace;
+            font-size: 14px;
+            background: rgba(0,0,0,0.8);
+            padding: 15px;
+            border-radius: 5px;
+            z-index: 100;
+            max-width: 400px;
+        `;
+        document.body.appendChild(hud);
+
+        hud.innerHTML = 'Loading phoenix model...';
+
+        let time = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.02;
+
+            // Rotate camera around
+            camera.position.x = Math.sin(time * 0.3) * 30;
+            camera.position.z = Math.cos(time * 0.3) * 30;
+            camera.lookAt(0, 5, 0);
+
+            // Rotate debug sphere
+            debugSphere.rotation.y += 0.01;
+            
+            // Rotate phoenix if loaded
+            if (phoenix) {
+                phoenix.rotation.y += 0.01;
+            }
+
+            // Update HUD with camera info
+            hud.innerHTML += `<br><br>Cam distance: ${camera.position.distanceTo(new THREE.Vector3(0, 5, 0)).toFixed(0)}`;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>

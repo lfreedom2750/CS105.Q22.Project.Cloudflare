@@ -1,0 +1,95 @@
+
+> temple-run-clone@1.0.0 dev
+> vite --host 127.0.0.1
+
+Port 5173 is in use, trying another one...
+
+  [32m[1mVITE[22m v5.4.21[39m  [2mready in [0m[1m254[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m5174[22m/[39m
+[2m11:11:23 AM[22m [36m[1m[vite][22m[39m [32m✨ new dependencies optimized: [33mthree/addons/controls/OrbitControls.js[32m[39m
+[2m11:11:23 AM[22m [36m[1m[vite][22m[39m [32m✨ optimized dependencies changed. reloading[39m
+[2m11:14:25 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:14:26 AM[22m [36m[1m[vite][22m[39m [32m✨ new dependencies optimized: [33mthree/addons/utils/SkeletonUtils.js[32m[39m
+[2m11:14:26 AM[22m [36m[1m[vite][22m[39m [32m✨ optimized dependencies changed. reloading[39m
+[2m11:14:28 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:18:02 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:18:05 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:18:48 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:18:51 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:18:59 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:19:00 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:19:04 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:19:05 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:19:11 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:19:14 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:21:43 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/index.html[22m
+[2m11:21:52 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:21:55 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:21:57 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:21:57 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:22:08 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:22:11 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:22:25 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:22:27 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:22:40 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:22:41 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:22:47 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:22:48 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:23:04 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:23:07 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:26:08 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:26:08 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:26:26 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:26:27 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:26:36 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:26:38 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:26:42 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:26:43 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:29:42 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/index.html[22m
+[2m11:29:48 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:30:04 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:30:12 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:30:23 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:30:23 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:30:29 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:30:29 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:30:34 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:30:34 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:33:51 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:33:52 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:33:58 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:33:58 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:35:47 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:35:48 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:43:00 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:43:00 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:46:02 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:46:05 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:46:19 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:46:22 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mcapture-studio/src/main.js[22m
+[2m11:53:16 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m11:53:18 AM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m12:01:06 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m12:01:09 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m12:18:25 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m12:18:26 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m12:20:02 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m12:22:28 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m12:31:01 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m12:31:25 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m12:31:25 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m12:31:27 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m12:46:17 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m12:46:20 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m12:59:26 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m1:02:52 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m1:02:55 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m1:10:13 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m1:10:14 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m1:12:42 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m1:12:43 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m1:14:39 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m1:14:40 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m1:28:45 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m
+[2m1:28:48 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/Config.js[22m

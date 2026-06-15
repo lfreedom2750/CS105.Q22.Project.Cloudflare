@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Chạy Trốn Vô Tận - Vite Project</title>
+</head>
+<body>
+    <div id="main-menu">
+        <h1 id="menu-title">TRỐN THOÁT</h1>
+
+        <div class="selection-group" id="group-player">
+            <div class="group-title">Chọn Người Chạy</div>
+            <div class="buttons-container" id="container-player"></div>
+        </div>
+
+        <button id="btn-review" class="review-btn">REVIEW NHÂN VẬT</button>
+
+        <div class="selection-group" id="group-camera">
+            <div class="group-title">Chọn Góc Nhìn</div>
+            <div class="buttons-container" id="container-camera">
+                <button class="camera-option selected" data-camera="thirdPerson">Góc nhìn thứ 3</button>
+                <button class="camera-option" data-camera="firstPerson">Góc nhìn thứ 1</button>
+            </div>
+        </div>
+
+        <button id="btn-help" class="help-btn">HƯỚNG DẪN CHƠI</button>
+
+        <button id="btn-play">CHƠI NGAY</button>
+        <button id="btn-setting">Setting</button>
+    </div>
+
+    <!-- Subscreen Review Nhân vật -->
+    <div id="review-screen" class="review-screen">
+        <div class="review-header">
+            <h2>REVIEW NHÂN VẬT</h2>
+            <button id="btn-review-close" class="review-close-btn">&times;</button>
+        </div>
+
+        <div class="review-stage">
+            <canvas id="review-canvas"></canvas>
+            <div class="review-character-name" id="review-character-name">Chiến Sĩ</div>
+        </div>
+
+        <div class="review-chooser">
+            <div class="group-title">Chọn nhân vật</div>
+            <div class="buttons-container" id="review-container-character"></div>
+        </div>
+    </div>
+
+    <div id="ui">
+        QUÃNG ĐƯỜNG: <span id="score">0</span>m<br>
+        VÀNG: <span id="coinCount">0</span><br>
+        <button id="btn-camera">Góc nhìn: 3rd</button>
+    </div>
+    <div id="flash"></div>
+    <div id="msg">
+        <h1 id="death-title">BỊ BẮT RỒI!</h1>
+        <div id="final-stats"></div>
+        <button class="retry" onclick="location.reload()">THỬ LẠI</button>
+    </div>
+
+    <!-- <div id="mobile-controls">
+        <div class="control-btn" id="btn-left">Trái</div>
+
+        <div class="action-btns">
+            <div class="control-btn jump" id="btn-jump">Nhảy</div>
+            <div class="control-btn slide" id="btn-slide">Trườn</div>
+            <div class="control-btn" id="btn-camera-mobile">Cam</div>
+        </div>
+
+        <div class="control-btn" id="btn-right">Phải</div>
+    </div> -->
+
+    <!-- Modal Hướng dẫn -->
+    <div id="help-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Hướng Dẫn Chơi</h2>
+
+            <div class="help-section">
+                <h3>🎮 Điều khiển</h3>
+                <table class="help-table">
+                    <tr><td>⬅️ ➡️</td><td>Di chuyển sang trái/phải</td></tr>
+                    <tr><td>⬆️ / Space / W</td><td>Nhảy (tránh chướng ngại vật)</td></tr>
+                    <tr><td>C</td><td>Chuyển góc nhìn</td></tr>
+                </table>
+            </div>
+
+            <div class="help-section">
+                <h3>🎯 Mục tiêu</h3>
+                <p>• Chạy thoát khỏi quái vật phía sau</p>
+                <p>• Thu thập vàng 💰 để ghi điểm</p>
+                <p>• Tránh chướng ngại vật</p>
+                <p>• Không rơi xuống suối nước</p>
+            </div>
+
+            <div class="help-section">
+                <h3>🌟 4 Mùa trong game</h3>
+                <table class="help-table">
+                    <tr><td>🌸 Xuân</td><td>Hoa anh đào rơi, rồng may mắn xuất hiện</td></tr>
+                    <tr><td>☀️ Hạ</td><td>Nước phía dưới hiện ra, thời tiết nóng</td></tr>
+                    <tr><td>🍂 Thu</td><td>Cây lá đỏ, đường đầy lá</td></tr>
+                    <tr><td>❄️ Đông</td><td>Tuyết rơi, suối đóng băng an toàn</td></tr>
+                </table>
+            </div>
+
+            <div class="help-section">
+                <h3>⚡ Sự kiện đặc biệt</h3>
+                <p>• <strong>Máy bay</strong>: Thả bom từ trên trời (cẩn thận!)</p>
+                <p>• <strong>Rồng</strong>: Xuất hiện mùa xuân, thả kim cương kích hoạt lá chắn</p>
+                <p>• <strong>Cổng chuyển mùa</strong>: Tự động xuất hiện mỗi 20 giây</p>
+            </div>
+
+
+            <div class="help-section warning">
+                <h3>⚠️ Chú ý</h3>
+                <p>• Đừng quên rẽ đúng hướng khi gặp ngã rẽ!</p>
+                <p>• Mùa hè: suối nước rất nguy hiểm!</p>
+                <p>• Nhảy qua khe hở trên cầu!</p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>

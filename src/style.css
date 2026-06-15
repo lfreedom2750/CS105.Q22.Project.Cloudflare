@@ -1,0 +1,427 @@
+body { margin: 0; overflow: hidden; background: #cceeff; font-family: 'Segoe UI', sans-serif; user-select: none; -webkit-user-select: none; }
+#ui { position: absolute; top: 10px; right: 10px; color: #fff; font-size: 20px; font-weight: bold; text-align: right; pointer-events: none; z-index: 10; text-shadow: 2px 2px 2px #000; transition: color 0.3s; }
+#msg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center; display: none; background: rgba(0,20,40,0.9); padding: 40px; border-radius: 15px; border: 4px solid #fff; z-index: 100; box-shadow: 0 0 30px rgba(255,255,255,0.5); width: 300px; }
+#death-title { color: #ffcccc; font-size: 30px; margin-top: 0; }
+#final-stats { font-size: 1.2em; margin-bottom: 10px; }
+button.retry { padding: 15px 40px; font-size: 22px; cursor: pointer; background: #fff; border: none; border-radius: 8px; font-weight: bold; margin-top: 20px; color: #000; width: 100%; }
+
+/* Mobile Controls */
+#mobile-controls { position: absolute; bottom: 20px; left: 0; width: 100%; display: flex; justify-content: center; align-items: flex-end; gap: 15px; padding: 0 10px; box-sizing: border-box; z-index: 50; }
+.control-btn { width: 70px; height: 70px; background: rgba(255, 255, 255, 0.2); border: 3px solid #fff; border-radius: 50%; color: #fff; font-size: 14px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; text-transform: uppercase; backdrop-filter: blur(5px); }
+.control-btn:active { background: rgba(255, 255, 255, 0.4); transform: scale(0.9); }
+.action-btns { display: flex; flex-direction: column; gap: 15px; }
+.jump { background: rgba(255, 100, 100, 0.2); border-color: #ffcccc; height: 85px; width: 85px; }
+
+/* Flash Trắng */
+#flash { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #fff; z-index: 99; opacity: 0; pointer-events: none; }
+@keyframes flashEffect { 0% { opacity: 0; } 10% { opacity: 1; } 100% { opacity: 0; } }
+.trigger-flash { animation: flashEffect 0.5s ease-out; }
+
+canvas { display: block; }
+
+/* Giữ nguyên CSS cũ của #ui, #msg, #mobile-controls từ câu trước */
+/* ... */
+
+/* --- THÊM: CSS CHO MAIN MENU --- */
+#main-menu {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-image: url('/assets/bg_menu.jpg'); /* Cần file ảnh */
+    background-size: cover; background-position: center;
+    z-index: 200; /* Nằm trên cùng */
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+    padding-top: 30px;
+    transition: opacity 0.5s;
+    overflow-y: auto;
+}
+
+#main-menu.hidden { opacity: 0; pointer-events: none; }
+
+#menu-title { color: #fff; font-size: 56px; text-shadow: 0 0 10px #ff0000; margin: 0 0 16px 0; }
+
+/* --- MENU PREVIEW 3D (Ortho) --- */
+.menu-previews {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.preview-card {
+    background: rgba(0, 0, 0, 0.75);
+    border: 2px solid #ffcc00;
+    border-radius: 12px;
+    padding: 12px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(255, 204, 0, 0.25);
+}
+
+.preview-card.monster {
+    border-color: #ff5544;
+    box-shadow: 0 0 20px rgba(255, 85, 68, 0.3);
+}
+
+.preview-label {
+    color: #ffcc00;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.preview-card.monster .preview-label {
+    color: #ff8888;
+}
+
+.preview-box {
+    width: 256px;
+    height: 220px;
+    background: linear-gradient(180deg, rgba(20, 30, 50, 0.8) 0%, rgba(40, 20, 30, 0.8) 100%);
+    border-radius: 8px;
+    margin: 0 auto 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.preview-card.monster .preview-box {
+    background: linear-gradient(180deg, rgba(40, 20, 20, 0.85) 0%, rgba(20, 5, 5, 0.9) 100%);
+}
+
+#preview-player-canvas,
+#preview-monster-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Nhóm các lựa chọn */
+.selection-group { background: rgba(0,0,0,0.7); border: 2px solid #ffcc00; border-radius: 10px; padding: 15px; margin-bottom: 15px; width: 80%; max-width: 600px; text-align: center; }
+.group-title { color: #ffcc00; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; }
+
+/* Container chứa các nút nhỏ bên trong nhóm */
+.buttons-container { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+
+/* Nút chọn nhân vật/quái vật */
+.select-btn { padding: 10px 20px; background: rgba(255,255,255,0.1); border: 1px solid #fff; color: #fff; border-radius: 5px; cursor: pointer; transition: 0.2s; }
+.select-btn:hover { background: rgba(255,255,255,0.3); }
+.select-btn.active { background: #ffcc00; color: #000; font-weight: bold; border-color: #ffcc00; }
+
+/* Nút Play khổng lồ */
+#btn-play { margin-top: 30px; padding: 20px 60px; font-size: 30px; background: #ff4444; color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; text-transform: uppercase; box-shadow: 0 0 20px rgba(255,68,68,0.5); }
+#btn-play:hover { transform: scale(1.1); background: #ff0000; }
+
+/* Nút Setting ở góc */
+#btn-setting { position: absolute; bottom: 10px; right: 10px; padding: 10px; background: rgba(0,0,0,0.5); color: #fff; border: 1px solid #fff; border-radius: 5px; cursor: pointer; }
+
+#btn-camera {
+    margin-top: 5px;
+    padding: 5px 10px;
+    background: #222;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#btn-camera:hover {
+    background: #444;
+}
+
+.camera-option.selected {
+    background: #ffd54a;
+    color: #111;
+    font-weight: 700;
+}
+
+.camera-option {
+    margin: 4px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* --- Nút Hướng dẫn --- */
+.help-btn {
+    margin-top: 15px;
+    padding: 12px 30px;
+    font-size: 16px;
+    background: rgba(100, 100, 255, 0.3);
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.help-btn:hover {
+    background: rgba(100, 100, 255, 0.5);
+    transform: scale(1.05);
+}
+
+/* --- Nút Review nhân vật --- */
+.review-btn {
+    margin: 15px 0 5px;
+    padding: 14px 40px;
+    font-size: 18px;
+    background: linear-gradient(135deg, #ffaa00 0%, #ff6600 100%);
+    color: #fff;
+    border: 2px solid #ffd54a;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 18px rgba(255, 170, 0, 0.5);
+    transition: 0.2s;
+}
+.review-btn:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #ffc933 0%, #ff8833 100%);
+    box-shadow: 0 0 25px rgba(255, 200, 50, 0.7);
+}
+
+/* --- Subscreen Review --- */
+.review-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 100%);
+    z-index: 600;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+.review-screen.show {
+    display: flex;
+    opacity: 1;
+}
+
+.review-header {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+.review-header h2 {
+    color: #ffd54a;
+    font-size: 32px;
+    margin: 0;
+    text-shadow: 0 0 12px rgba(255, 213, 74, 0.6);
+    letter-spacing: 2px;
+}
+.review-close-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 80, 80, 0.2);
+    border: 2px solid #ff6b6b;
+    color: #ff6b6b;
+    font-size: 28px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    line-height: 1;
+    transition: 0.2s;
+}
+.review-close-btn:hover {
+    background: #ff6b6b;
+    color: #fff;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.review-stage {
+    width: min(700px, 90vw);
+    height: min(420px, 60vh);
+    background: radial-gradient(ellipse at center bottom, rgba(255, 213, 74, 0.12) 0%, transparent 70%),
+                linear-gradient(180deg, #1a2540 0%, #0a1228 100%);
+    border: 3px solid #ffd54a;
+    border-radius: 16px;
+    box-shadow: 0 0 40px rgba(255, 213, 74, 0.3), inset 0 0 30px rgba(255, 213, 74, 0.1);
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 25px;
+}
+
+#review-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.review-character-name {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.75);
+    color: #ffd54a;
+    padding: 8px 22px;
+    border: 2px solid #ffd54a;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(255, 213, 74, 0.4);
+    white-space: nowrap;
+}
+
+/* Cụm chọn nhân vật trong subscreen — đồng bộ với menu chính */
+.review-chooser {
+    width: min(700px, 90vw);
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 213, 74, 0.5);
+    border-radius: 12px;
+    padding: 15px 20px;
+    text-align: center;
+    box-sizing: border-box;
+}
+.review-chooser .group-title {
+    color: #ffd54a;
+    margin-bottom: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+.review-chooser .buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    align-items: stretch;
+}
+.review-chooser .select-btn {
+    flex: 1 1 130px;
+    max-width: 200px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+}
+.review-chooser .select-btn:hover {
+    background: rgba(255, 213, 74, 0.25);
+    border-color: rgba(255, 213, 74, 0.7);
+}
+.review-chooser .select-btn.active {
+    background: #ffd54a;
+    color: #1a1a1a;
+    font-weight: bold;
+    border-color: #ffd54a;
+    box-shadow: 0 0 12px rgba(255, 213, 74, 0.5);
+}
+
+/* --- Modal Hướng dẫn --- */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 500;
+    justify-content: center;
+    align-items: center;
+}
+.modal.show {
+    display: flex;
+}
+.modal-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 3px solid #4a90d9;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    max-height: 85vh;
+    overflow-y: auto;
+    color: #fff;
+    position: relative;
+    box-shadow: 0 0 50px rgba(74, 144, 217, 0.5);
+}
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+.modal-content::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+    background: #4a90d9;
+    border-radius: 4px;
+}
+.modal-content h2 {
+    text-align: center;
+    color: #4a90d9;
+    margin-bottom: 25px;
+    font-size: 28px;
+    text-shadow: 0 0 10px rgba(74, 144, 217, 0.5);
+}
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    color: #ff6b6b;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.close-btn:hover {
+    color: #fff;
+    transform: scale(1.2);
+}
+.help-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+.help-section h3 {
+    color: #ffd54a;
+    margin: 0 0 12px 0;
+    font-size: 18px;
+}
+.help-section p {
+    margin: 8px 0;
+    line-height: 1.6;
+}
+.help-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.help-table td {
+    padding: 8px 5px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.help-table td:first-child {
+    font-weight: bold;
+    color: #7fdbff;
+    white-space: nowrap;
+    width: 40%;
+}
+.help-section.warning {
+    background: rgba(255, 107, 107, 0.15);
+    border: 1px solid rgba(255, 107, 107, 0.3);
+}
+.help-section.warning h3 {
+    color: #ff6b6b;
+}
